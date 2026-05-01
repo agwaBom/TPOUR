@@ -76,13 +76,3 @@ TPOUR introduces **time vector interpolation** (1) to enable smooth adaptation t
 
 Code and data will be released soon
 
-## Citation
-
-```bibtex
-@inproceedings{kim2026tpour,
-  title={Temporal Preference Optimization for Unsupervised Retrieval},
-  author={Kim, HyunJin and Shim, Jaejun and Kim, Young Jin and Bak, JinYeong},
-  booktitle={ICML},
-  year={2026}
-}
-```
