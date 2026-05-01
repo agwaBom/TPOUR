@@ -19,7 +19,7 @@ Traditional unsupervised retrievers (e.g., contrastive learning–based models) 
 * Standard retrievers ignore this signal → **temporal misalignment**
 * Supervised temporal retrieval requires labeled timestamps → **not scalable**
 
-![TPOUR Overview](./figure/Comparison.pdf)
+![TPOUR Overview](./figure/Comparison.png)
 
 Figure: Comparison between TPOUR aligned at 2019 and a time-unaware retriever for queries with explicit (e.g., in 2019) or implicit (e.g., this year) temporal information. **Left**: A mixed-timestamp document collection containing (i) semantically and temporally aligned documents (green), (ii) semantically relevant but temporally misaligned documents (yellow), and (iii) irrelevant documents (red). **Right**: Ranked retrieval results. The time-unaware retriever, trained solely for semantic similarity, struggles to rank the temporally aligned document (green) over the misaligned (yellow). In contrast, the TPOUR-trained retriever prioritizes the temporally aligned document.
 
@@ -43,7 +43,7 @@ The model is trained to:
 
 ## Model Architecture
 
-![TPOUR Method](./figure/Training_method.pdf)
+![TPOUR Method](./figure/Training_method.png)
 
 Figure: Overview of TPOUR. Given a query $Q_i$ and two documents $D_i^t$ (temporally aligned) and $D_i^{t'}$ (temporally misaligned), each input is encoded using both the main encoder $\pi_\theta$ and the reference encoder $\pi_{\text{ref}}$. (1) Similarity scores are computed between the query and each document using $\pi_\theta$. (2) A contrastive loss $L_{\text{CE}}$, which calculate semantic similarity between $Q_i$ and $D_i^t$, and a TRPO loss $L_{\text{TPRO}}$ for preferring temporally aligned documents are calculated to get combined loss $L_{\text{total}}$. (3) The reference embeddings $\pi_{\text{ref}}(D_i^t)$ and $\pi_{\text{ref}}(D_i^{t'})$ are added to a queue as negatives for future batches. (4) The encoder $\pi_\theta$ is updated via $L_{\text{total}}$, and $\pi_{\text{ref}}$ is updated via momentum from $\pi_\theta$.
 
